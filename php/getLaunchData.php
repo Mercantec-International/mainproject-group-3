@@ -18,7 +18,7 @@ if ($launchNumber) {
         $response['graphs'] = [];
 
         // Fetch Data from Each Table
-        $tables = ['bme280', 'gygps6mv2', 'hy521'];
+        $tables = ['hy521']; // 'bme280', 'gygps6mv2', 
         foreach ($tables as $table) {
             $dataQuery = "SELECT * FROM $table WHERE launchId = $launchId";
             $dataResult = $conn->query($dataQuery);
@@ -30,45 +30,77 @@ if ($launchNumber) {
             $response['tables'][$table] = $tableData;
         }
 
-        // Prepare Graph Data (e.g., Temperature, Pressure)
-        $graphQuery = "SELECT temperature, pressure, approxAltitude FROM bme280 WHERE launchId = $launchId";
+        // Prepare Graph Data
+        $graphQuery = "SELECT accelerateX, accelerateY, accelerateZ, gyroX, gyroY, gyroZ, temperature, timestamp FROM hy521 WHERE launchId = $launchId";
         $graphResult = $conn->query($graphQuery);
 
+        $accelerateX = [];
+        $accelerateY = [];
+        $accelerateZ = [];
+        $gyroX = [];
+        $gyroY = [];
+        $gyroZ = [];
         $temperature = [];
-        $pressure = [];
-        $altitude = [];
         $timestamps = [];
 
         while ($row = $graphResult->fetch_assoc()) {
+            $accelerateX[] = $row['accelerateX'];
+            $accelerateY[] = $row['accelerateY'];
+            $accelerateZ[] = $row['accelerateZ'];
+            $gyroX[] = $row['gyroX'];
+            $gyroY[] = $row['gyroY'];
+            $gyroZ[] = $row['gyroZ'];
             $temperature[] = $row['temperature'];
-            $pressure[] = $row['pressure'];
-            $altitude[] = $row['approxAltitude'];
-            $timestamps[] = count($timestamps) + 1; // Simulating timestamps
+            $timestamps[] = $row['timestamp'];
         }
 
-        if (!empty($temperature)) {
+        if (!empty($timestamps)) {
             $response['graphs']['Environmental Data'] = [
                 'id' => 'environmentGraph',
                 'labels' => $timestamps,
                 'datasets' => [
                     [
-                        'label' => 'Temperature (°C)',
-                        'data' => $temperature,
+                        'label' => 'AccelerateX',
+                        'data' => $accelerateX,
                         'borderColor' => 'red',
                         'backgroundColor' => 'rgba(255, 0, 0, 0.2)',
                     ],
                     [
-                        'label' => 'Pressure (hPa)',
-                        'data' => $pressure,
+                        'label' => 'AccelerateY',
+                        'data' => $accelerateY,
                         'borderColor' => 'blue',
                         'backgroundColor' => 'rgba(0, 0, 255, 0.2)',
                     ],
                     [
-                        'label' => 'Approx. Altitude (m)',
-                        'data' => $altitude,
+                        'label' => 'AccelerateZ',
+                        'data' => $accelerateZ,
                         'borderColor' => 'green',
                         'backgroundColor' => 'rgba(0, 255, 0, 0.2)',
-                    ]
+                    ],
+                    [
+                        'label' => 'GyroX',
+                        'data' => $gyroX,
+                        'borderColor' => 'orange',
+                        'backgroundColor' => 'rgba(255, 165, 0, 0.2)',
+                    ],
+                    [
+                        'label' => 'GyroY',
+                        'data' => $gyroY,
+                        'borderColor' => 'purple',
+                        'backgroundColor' => 'rgba(128, 0, 128, 0.2)',
+                    ],
+                    [
+                        'label' => 'GyroZ',
+                        'data' => $gyroZ,
+                        'borderColor' => 'brown',
+                        'backgroundColor' => 'rgba(165, 42, 42, 0.2)',
+                    ],
+                    [
+                        'label' => 'Temperature',
+                        'data' => $temperature,
+                        'borderColor' => 'cyan',
+                        'backgroundColor' => 'rgba(0, 255, 255, 0.2)',
+                    ],
                 ]
             ];
         }
