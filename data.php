@@ -56,39 +56,6 @@ headerHTML("Launch Data");
         // Data Title
         container.innerHTML += `<h3 class="text-center">Launch Data</h3>`;
 
-        const graphData = data.graphs;
-
-        for (const [graphTitle, graph] of Object.entries(graphData)) {
-            // Create and append chart container
-            const titleElement = document.createElement('h4');
-            titleElement.textContent = graphTitle;
-
-            const canvasElement = document.createElement('canvas');
-            canvasElement.id = graph.id;
-
-            container.appendChild(titleElement);
-            container.appendChild(canvasElement);
-
-            // Initialize Chart.js
-            const ctx = canvasElement.getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: graph.labels,
-                    datasets: graph.datasets
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: graphTitle
-                        }
-                    }
-                }
-            });
-        }
-
         for (const [table, rows] of Object.entries(data.tables)) {
             let tableHTML = `<h4>${table}</h4><table class="table table-bordered"><thead><tr>`;
             if (rows.length > 0) {
@@ -110,6 +77,29 @@ headerHTML("Launch Data");
                 tableHTML += `<p>No data available.</p>`;
             }
             container.innerHTML += tableHTML;
+        }
+
+                // Graphs
+        const graphData = data.graphs;
+        for (const [graphTitle, graph] of Object.entries(graphData)) {
+            container.innerHTML += `<h4>${graphTitle}</h4><canvas id="${graph.id}"></canvas>`;
+            const ctx = document.getElementById(graph.id).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: graph.labels,
+                    datasets: graph.datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: graphTitle
+                        }
+                    }
+                }
+            });
         }
     }
 </script>
