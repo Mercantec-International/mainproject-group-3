@@ -189,9 +189,38 @@ include_once('../includes/header.php');
                 </div>
                 <!-- Details Description -->
                 <div class="w-full lg:w-3/5 lg:px-3">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
+                    <ul class="list-disc pl-6 space-y-4 text-sm md:text-md mt-4">
+                        <li>
+                            <span class="font-semibold">ESP32C3:</span> The esp32c3 is a powerful small wireless microcontroller. It's small size is a perfect fit for our rocket with the ability to send data to our webserver via the internet.
+                        </li>
+                        <li>
+                            <span class="font-semibold">3.7v lithium battery:</span> Is used to charge the esp32c3 on the go. This battery is perfect because it can be charged by the esp32c3 itself.
+                        </li>
+                        <li>
+                            <span class="font-semibold">Arduino UNO R4 WiFi:</span> Very nice lightweight board for operating the rocket prototype. This board is based on the esp32 series so it has the ability to connect to the internet wirelessly as well.
+                        </li>
+                        <li>
+                            <span class="font-semibold">BME280:</span> This component is used to measure the temperature and the pressure. It operates under I2C.
+                        </li>
+                        <li>
+                            <span class="font-semibold">MPU6050 (accelerometer):</span> Our most important component, this sensor is used to measure the X, Y, Z acceleration, the X, Y, Z gyro and the temperature of the sensor itself.
+                        </li>
+                        <li>
+                            <span class="font-semibold">Arduino relay:</span> This blocks the flow of voltage to make sure the valve stays closed. This device can be controlled by sending a high or low signal via digitalwrite().
+                        </li>
+                        <li>
+                            <span class="font-semibold">Rain bird 24V valve:</span> Used to release the build up pressure and launch the rocket. This valve can be controlled via electricity (24V) if the solenoid is fully closed.
+                        </li>
+                        <li>
+                            <span class="font-semibold">Boost converter:</span> This arduino component is used to convert the voltage from our batteries to 24V which is required to open the valve and release the pressure.
+                        </li>
+                        <li>
+                            <span class="font-semibold">Liquid Crystal Display:</span> Used to display the current pressure in the tank.
+                        </li>
+                        <li>
+                            <span class="font-semibold">Battery compartment:</span> Can hold 4 batteries to supply our valve with 24V in combination with a boost converter making our rocket station portable.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
