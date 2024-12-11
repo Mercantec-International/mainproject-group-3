@@ -5,7 +5,7 @@ include('includes/header.php');
 
 ?>
 <!-- Hero Section -->
-<div class="hero flex flex-col items-center justify-center text-center bg-gray-800 text-white py-20">
+<div class="hero h-[600px] bg-[url('/media/images/rocket-background.jpg')] bg-cover flex flex-col items-center justify-center text-white">
     <h1 class="text-4xl font-bold">Welcome to Project Apollo</h1>
     <p class="text-xl mt-4">Advancing Rocketry and Space Exploration with Rocket League</p>
     <a href="/pages/project.php" class="mt-6 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700">Learn More About Our Project</a>

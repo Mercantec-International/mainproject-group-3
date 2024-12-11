@@ -68,7 +68,7 @@ include_once('../includes/header.php');
 
     <!-- Silas -->
     <div class="card w-[20em] h-[30em] bg-[#353839] transition duration-500 ease-in-out clip-path-custom rounded-tr-[20px] rounded-bl-[20px] flex flex-col mx-auto">
-      <div class="img w-[6em] h-[6em] bg-[url('../media/images/Silas.PNG')] bg-cover bg-center rounded-[15px] mx-auto"></div>
+      <div class="img w-[6em] h-[6em] bg-[url('../media/images/Silas.jpg')] bg-cover bg-center rounded-[15px] mx-auto"></div>
       <span class="font-bold text-white text-center text-[1.1em] block mt-2">Silas</span>
       <span class="text-center text-white font-semibold text-[1em]">Front-End</span>
       <span class="text-center text-white font-medium text-[1em] mt-2">Age: 19</span>

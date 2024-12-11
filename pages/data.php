@@ -31,13 +31,15 @@ $page = 'Data';
         <p>Select a launch to view data.</p>
     </div>
 </div>
-
+<?php
+include_once('../includes/footer.php');
+?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     document.getElementById('launchNumber').addEventListener('change', function() {
         const launchNumber = this.value;
 
-        fetch(`php/getLaunchData.php?launchNumber=${launchNumber}`)
+        fetch(`backend/getLaunchData.php?launchNumber=${launchNumber}`)
             .then(response => response.json())
             .then(data => {
                 displayLaunchData(data);
@@ -104,6 +106,3 @@ $page = 'Data';
         }
     }
 </script>
-<?php
-include_once('../includes/footer.php')
-?>
